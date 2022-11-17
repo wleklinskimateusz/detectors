@@ -48,18 +48,18 @@ def analise(element, peak, fwhm, back_peak, back_fwhm, V):
     #     filename=os.path.join(element_dir, "R_back.png")
     # )
 
-    back_peak_main_peak = back_peak / peak
+    ratio_of_peaks = peak / back_peak
     fig, ax = create_fig(
-        V, back_peak_main_peak,
+        V, ratio_of_peaks,
         xlabel="V [V]",
         ylabel="R",
         title=element,
-        ylim=(0, 1),
+        ylim=(0, 4),
         label="punkty pomiarowe"
     )
-    ax.plot(V, 0.5*np.ones_like(V), 'k--', label="wartość teoretyczna")
+    ax.plot(V, 2*np.ones_like(V), 'k--', label="wartość teoretyczna")
     ax.legend()
-    fig.savefig(os.path.join(element_dir, "back_peak_main_peak.png"))
+    fig.savefig(os.path.join(element_dir, "ratio.png"))
 
 
 def main():
